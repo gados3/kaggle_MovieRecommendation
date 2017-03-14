@@ -13,7 +13,7 @@ Note that the submission data includes an id column that is in the form `<user_n
 
 The included rec_runner.py file has a function to create the correct submission format from your ratings matrix (it also needs access to a correctly formatted submission such as the sample submission)
 
-[official website](https://inclass.kaggle.com/c/movie)
+[https://inclass.kaggle.com/c/movie](https://inclass.kaggle.com/c/movie)
 ___
 
-Using python3.6
+**Using python3.6**
