@@ -4,7 +4,7 @@ from enum import Enum
 class MyEnum(Enum):
 
     def __str__(self):
-        return self.value.__str__()
+        return self.name
 
 
 class Occupation(MyEnum):

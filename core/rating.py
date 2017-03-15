@@ -18,5 +18,5 @@ class Rating:
                                    self.rating,
                                    self.id)
 
-    def normalize_rating(rating: int):
+    def normalize_rating(self, rating: int):
         return rating / 5

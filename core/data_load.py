@@ -1,6 +1,5 @@
 from functools import partial
 from operator import is_not
-from os import path
 
 from data_type import Occupation, Sex, Age, Zipcode
 from user import User
@@ -62,20 +61,3 @@ def parse_rating(rating_string: str):
         rating=int(rating_elements[2]),
         rating_id=rating_elements[3]
     )
-
-
-if __name__ == "__main__":
-    script_path = path.dirname(__file__)
-
-    users = load_users_data(path.join(script_path, '../resources/users.dat'))
-    movies = load_movies_data(
-        path.join(script_path, '../resources/movies.dat'))
-    ratings = load_ratings_data(
-        path.join(script_path, '../resources/training_ratings_for_kaggle_comp.csv'))
-
-    # for user in users:
-    #     print(user)
-    # for movie in movies:
-    #     print(movie)
-    for rating in ratings:
-        print(rating)
