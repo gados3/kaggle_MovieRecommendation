@@ -1,10 +1,10 @@
-from data_type import Occupation, Sex
+from data_type import Occupation, Sex, Age, Zipcode
 
 
 class User:
 
-    def __init__(self, user_id: int, sex: Sex, age, occupation: Occupation,
-                 zipcode):
+    def __init__(self, user_id: int, sex: Sex, age: Age, occupation: Occupation,
+                 zipcode: Zipcode):
         self.id = user_id
         self.sex = sex
         self.age = age
