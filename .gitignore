@@ -90,3 +90,6 @@ ENV/
 
 # VS Code settings
 .vscode/
+
+# Results
+result.csv
