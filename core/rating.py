@@ -1,4 +1,4 @@
-from data_type import Star_Rating
+from core.data_types import Star_Rating
 
 
 class Rating:
@@ -6,7 +6,7 @@ class Rating:
     def __init__(self, user_id: int, movie_id: int, rating: int, rating_id: str):
         self.user_id = user_id
         self.movie_id = movie_id
-        self.rating = Star_Rating(self.normalize_rating(rating))
+        self.rating = Star_Rating(rating)
         self.id = rating_id
 
     def __str__(self):
@@ -18,5 +18,5 @@ class Rating:
                                    self.rating,
                                    self.id)
 
-    def normalize_rating(self, rating: int):
-        return rating / 5
+    def itemize(self):
+        return [("rating", self.rating)]

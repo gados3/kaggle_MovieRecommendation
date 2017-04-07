@@ -1,5 +1,6 @@
 from operator import mul
 from functools import reduce
+from collections import defaultdict
 
 
 class Naive_Bayes:
@@ -10,7 +11,7 @@ class Naive_Bayes:
         self.__gen_attributes_matrix(training_data, classifier_name)
 
     def __sort_items_by_classifier(self, data, classifier_name):
-        sorted_items = {}
+        sorted_items = defaultdict(list)
         item_count = 0
         for item in data:
             for attribute in item:
@@ -22,7 +23,7 @@ class Naive_Bayes:
         return sorted_items, item_count
 
     def __count_attributes_of_items(self, items):
-        attributes = {}
+        attributes = defaultdict(int)
         item_count = 0
         for item in items:
             for attribute in item:
@@ -45,13 +46,13 @@ class Naive_Bayes:
         return self.attributes_matrix[classifier][1] / self.item_count
 
     def classify(self, item):
-        best_classifier = (None, 0)
+        best_classifier = ((None, None), 0)
         for classifier in self.attributes_matrix:
             cond_probs = []
             for attribute in item:
                 cond_probs.append(
                     self.__prob_of_a_knowing_c(attribute, classifier))
             current = reduce(mul, cond_probs, 1) * self.__prob_of_c(classifier)
-            if current > best_classifier[1]:
+            if current >= best_classifier[1]:
                 best_classifier = (classifier, current)
-        return best_classifier[0]
+        return best_classifier[0][1]

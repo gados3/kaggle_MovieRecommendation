@@ -1,12 +1,12 @@
-from data_type import Occupation, Sex, Age, Zipcode
+from core.data_types import Occupation, Gender, Age, Zipcode
 
 
 class User:
 
-    def __init__(self, user_id: int, sex: Sex, age: Age, occupation: Occupation,
+    def __init__(self, user_id: int, gender: Gender, age: Age, occupation: Occupation,
                  zipcode: Zipcode):
         self.id = user_id
-        self.sex = sex
+        self.gender = gender
         self.age = age
         self.occupation = occupation
         self.zipcode = zipcode
@@ -17,7 +17,13 @@ class User:
                'age: {}, ' \
                'occupation: {}, ' \
                'zipcode: {}'.format(self.id,
-                                    self.sex,
+                                    self.gender,
                                     self.age,
                                     self.occupation,
                                     self.zipcode)
+
+    def itemize(self):
+        return [("gender", self.gender),
+                ("age", self.age),
+                ("occupation", self.occupation),
+                ("zipcode", self.zipcode)]

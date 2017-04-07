@@ -1,4 +1,4 @@
-from data_type import Genre
+from core.data_types import Genre
 
 
 class Movie:
@@ -17,3 +17,9 @@ class Movie:
             "genres: {}".format(self.id,
                                 self.title,
                                 ' / '.join(map(lambda genre: str(genre), self.genres)))
+
+    def itemize(self):
+        movie_attributes = [("movie_title", self.title)]
+        attr_genres = [("movie_genre", g) for g in self.genres]
+        movie_attributes.extend(attr_genres)
+        return movie_attributes
