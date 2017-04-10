@@ -38,3 +38,6 @@ def list_similarity(list_1, list_2):
         return float(len(matches)) / max(len(list_1), len(list_2))
     else:
         return 0
+
+def avg(l):
+    return sum(l, 0.0) / len(l)

@@ -28,9 +28,10 @@ class User:
                 ("age", self.age),
                 ("occupation", self.occupation)]
 
-    def compare(self, other_user: User):
+    def compare(self, other_user):
         return global_similarity([
             nominal_disimilarity(self.gender, other_user.gender),
-            euclidian_distance(min_max_normalization(1, 56, self.age), min_max_normalization(1, 56, other_user.age)),
+            euclidian_distance(min_max_normalization(
+                1, 56, self.age.value), min_max_normalization(1, 56, other_user.age.value)),
             nominal_disimilarity(self.occupation, other_user.occupation)
         ])

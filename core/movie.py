@@ -9,8 +9,8 @@ class Movie:
         self.id = movie_id
         self.title = re.sub(r"\(\d{4}\)", '', title)
         self.genres = self.__parse_genres(genres)
-        self.year = re.search(r"\(\d{4}\)", title).group(
-            0).strip('(').strip(')')
+        self.year = int(re.search(r"\(\d{4}\)", title).group(
+            0).strip('(').strip(')'))
 
     def __parse_genres(self, genres_string: str):
         return list(map(lambda genre: Genre(genre), genres_string.split('|')))
@@ -29,7 +29,7 @@ class Movie:
         movie_attributes.extend(attr_genres)
         return movie_attributes
 
-    def compare(self, other_movie: Movie):
+    def compare(self, other_movie):
         return global_similarity([
             euclidian_distance(min_max_normalization(1920, 2017, self.year), min_max_normalization(1920, 2017, other_movie.year)),
             1 - list_similarity(self.genres, other_movie.genres)
