@@ -1,4 +1,5 @@
 from core.data_types import Occupation, Gender, Age, Zipcode
+from core.utils import global_similarity, nominal_disimilarity, min_max_normalization, euclidian_distance
 
 
 class User:
@@ -25,5 +26,12 @@ class User:
     def itemize(self):
         return [("gender", self.gender),
                 ("age", self.age),
-                ("occupation", self.occupation),
-                ("zipcode", self.zipcode)]
+                ("occupation", self.occupation)]
+
+    def compare(self, other_user):
+        return global_similarity([
+            nominal_disimilarity(self.gender, other_user.gender),
+            euclidian_distance(min_max_normalization(
+                1, 56, self.age.value), min_max_normalization(1, 56, other_user.age.value)),
+            nominal_disimilarity(self.occupation, other_user.occupation)
+        ])

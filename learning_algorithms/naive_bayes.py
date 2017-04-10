@@ -40,10 +40,10 @@ class Naive_Bayes:
 
     def __prob_of_a_knowing_c(self, attribute, classifier):
         attr_dict, c_count = self.attributes_matrix[classifier]
-        return attr_dict[attribute] / c_count
+        return attr_dict[attribute] / float(c_count)
 
     def __prob_of_c(self, classifier):
-        return self.attributes_matrix[classifier][1] / self.item_count
+        return self.attributes_matrix[classifier][1] / float(self.item_count)
 
     def classify(self, item):
         best_classifier = ((None, None), 0)
