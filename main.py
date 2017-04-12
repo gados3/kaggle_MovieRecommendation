@@ -95,7 +95,7 @@ def use_both_solutions(data: Data_Holder):
         nbc_rating = nbc.classify(data.itemize_association(user_id, movie_id))
         shs_rating = shs.classify(user_id, movie_id)
         avg_rating = Star_Rating(
-            int((nbc_rating.value + shs_rating.value) / 2.))
+            int(avg([nbc_rating.value, shs_rating.value])))
         results_list.append((user_id, avg_rating, movie_id))
     return results_list
 
@@ -144,11 +144,26 @@ def test(solution_fnct):
     print("Average time:", avg(times), "seconds")
 
 
+def comp(solution_fnct):
+    print("Fetching data from files...")
+    start_time = time.time()
+    data_holder = Comp_Data_Holder(
+        USERS_PATH, MOVIES_PATH, TRAINING_PATH, SAMPLE_PATH)
+    print(time.time() - start_time, "seconds")
+    start_time = time.time()
+    print("Rendering solution...")
+    write_solution_to_file(solution_fnct(data_holder), RESULT_PATH)
+    print("Done!")
+    print(time.time() - start_time, "seconds")
+
+
 if __name__ == "__main__":
 
     # NAIVE BAYES CLASSIFIER
     # test(use_nbc_solution)
     # SIMPLE HYBRID RECOMMENDATION SYSTEM
     # test(use_shs_solution)
-# SOLUTIONS COMBINED
-    test(use_both_solutions)
+    # SOLUTIONS COMBINED
+    # test(use_both_solutions)
+    # Generate competition file
+    comp(use_nbc_solution)
